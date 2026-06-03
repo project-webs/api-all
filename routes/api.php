@@ -12,6 +12,8 @@ use App\Http\Controllers\Api\TournamentController;
 use App\Http\Controllers\Api\PlayerController;
 use App\Http\Controllers\Api\ParticipantController;
 use App\Http\Controllers\Api\TournamentMatchController;
+use App\Http\Controllers\Api\FriendlyMatchController;
+use App\Http\Controllers\Api\FriendlyMatchGameController;
 
 // Public Route
 Route::get('/', function () {
@@ -31,6 +33,8 @@ Route::get('/', function () {
             'players' => url('/api-ptmbi/players'),
             'participants' => url('/api-ptmbi/participants'),
             'tournament-matches' => url('/api-ptmbi/tournament-matches'),
+            'friendly-matches' => url('/api-ptmbi/friendly-matches'),
+            'friendly-match-games' => url('/api-ptmbi/friendly-match-games'),
         ]
     ]);
 });
@@ -43,6 +47,8 @@ Route::get('/tournaments', [TournamentController::class, 'index']);
 Route::get('/players', [PlayerController::class, 'index']);
 Route::get('/participants', [ParticipantController::class, 'index']);
 Route::get('/tournament-matches', [TournamentMatchController::class, 'index']);
+Route::get('/friendly-matches', [FriendlyMatchController::class, 'index']);
+Route::get('/friendly-match-games', [FriendlyMatchGameController::class, 'index']);
 
 // Protected Routes
 Route::middleware('auth:sanctum')->group(function () {
@@ -60,4 +66,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('players', PlayerController::class)->except(['index']);
     Route::apiResource('participants', ParticipantController::class)->except(['index']);
     Route::apiResource('tournament-matches', TournamentMatchController::class)->except(['index']);
+    Route::apiResource('friendly-matches', FriendlyMatchController::class)->except(['index']);
+    Route::apiResource('friendly-match-games', FriendlyMatchGameController::class)->except(['index']);
 });
